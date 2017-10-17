@@ -15,6 +15,7 @@ import com.akexorcist.googledirection.constant.Language;
 import com.akexorcist.googledirection.constant.TransportMode;
 import com.akexorcist.googledirection.constant.Unit;
 import com.akexorcist.googledirection.model.Direction;
+import com.akexorcist.googledirection.model.Leg;
 import com.akexorcist.googledirection.util.DirectionConverter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -108,7 +109,8 @@ public class MapInteractor  implements OnMapReadyCallback, GoogleMap.OnMyLocatio
                             routeLines.remove();
                         }
                         if(!direction.getRouteList().isEmpty()) {
-                            ArrayList<LatLng> directionPositionList = direction.getRouteList().get(0).getLegList().get(0).getDirectionPoint();
+                            Leg leg = direction.getRouteList().get(0).getLegList().get(0);
+                            ArrayList<LatLng> directionPositionList = leg.getDirectionPoint();
                             PolylineOptions polylineOptions = DirectionConverter.createPolyline(context, directionPositionList, 5, context.getResources().getColor(R.color.colorRoute));
                             routeLines = googleMap.addPolyline(polylineOptions);
 
